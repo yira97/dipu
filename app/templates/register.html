@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}DEEEP - register{% endblock %}
+{% block content %}
+<div class="row justify-content-center" style="margin-top:10%">
+    <div class="panel-body">
+        {% for msg in get_flashed_messages(category_filter=['err']) %}
+        <p style="color: red">{{ msg }}</p>
+        {% endfor %}
+        {% for msg in get_flashed_messages(category_filter=['ok']) %}
+        <p style="color: green">{{ msg }}</p>
+        {% endfor %}
+        <form role="form" method="POST">
+            {{ form.csrf_token }}
+            <fieldset>
+                <div class="form-group">
+                    <label for="input_name"><span class="glyphicon glyphicon-user"></span>&nbsp;用户名</label>
+                    {{ form.username }}
+                </div>
+                {% for err in form.username.errors %}
+                <div class="col-md-12"><span style="color: red">{{ err }}</span></div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="input_email"><span class="glyphicon glyphicon-envelope"></span>&nbsp;邮箱</label>
+                    {{ form.email }}
+                </div>
+                {% for err in form.email.errors %}
+                <div class="col-md-12"><span style="color: red">{{ err }}</span></div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="input_password"><span class="glyphicon glyphicon-lock"></span>&nbsp;密码</label>
+                    {{ form.password }}
+                </div>
+                {% for err in form.password.errors %}
+                <div class="col-md-12"><span style="color: red">{{ err }}</span></div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="input_repassword"><span class="glyphicon glyphicon-lock"></span>&nbsp;确认密码</label>
+                    {{ form.confirm }}
+                </div>
+                {% for err in form.confirm.errors %}
+                <div class="col-md-12"><span style="color: red">{{ err }}</span></div>
+                {% endfor %}
+                {{ form.submit }}
+                我接受上述条款&nbsp;{{form.accept_tos}}
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}
