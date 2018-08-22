@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}DEEEP - {{topic.title}}{% endblock %}
+{% block content %}
+<div class="row" style="margin-top:5%">
+
+
+
+    <div class="card col-10">
+        <div class="card-body">
+            <h1 class="card-title">{{topic.title}} <span class="badge badge-secondary">New</span></h1>
+            <p class="card-text">{{topic.content}}</p>
+            <p class="card-text">
+                <small class="text-muted">{{topic.author}} wrote at {{topic.ct}}</small>
+            </p>
+        </div>
+
+    </div>
+
+
+</div>
+{% endblock %}
+

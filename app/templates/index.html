@@ -1,7 +1,32 @@
 {% extends "base.html" %}
 {% block title %}DEEEP - index{% endblock %}
 {% block content %}
-<div class="row">
-这是主页
+<div class="row " style="margin-top:2%">
+    <div class="col-9">
+        {% for t in topics %}
+        <div class="row">
+            <div class="col-10 card">
+                <div class="card-body">
+                    <a href={{url_for('topic.detail',index=t.index)}}>{{t.title}}&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;{{t.author}}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-3">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">这里是嘀噗 ，</h5>
+                    <p class="card-text">My name is Van. I'm an artist. I'm a performance artist. I'm hired for people
+                        to
+                        fulfill their fantasies, their DEEP♂DARK♂FANTASIES.</p>
+                    <a href={{url_for('topic.add')}} class="btn btn-dark">发布新帖</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 {% endblock %}
+

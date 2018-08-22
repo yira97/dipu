@@ -1,9 +1,9 @@
 from flask import render_template, Blueprint, flash, redirect, url_for, session
 
 from app.forms import LoginForm, RegistrationForm
+from app.models.topic import Topic
 from app.models.user import User
 from app.routes.bbs import current_user
-from app.utils import log
 
 main = Blueprint('index', __name__)
 
@@ -11,7 +11,8 @@ main = Blueprint('index', __name__)
 @main.route("/", methods=["GET"])
 def index():
     u = current_user()
-    return render_template('index.html', user=u)
+    ts = Topic.objects()
+    return render_template('index.html', user=u,topics=ts)
 
 
 @main.route("/login", methods=["GET", "POST"])
@@ -21,12 +22,12 @@ def login():
         u = User(username=form.data['username'], password=form.data['password'])
         if u.verify_username():
             flash("账号不存在")
-            return redirect(url_for('.login'))
+            return redirect(url_for('index.login'))
         elif u.validation_login():
             flash("密码错误")
-            return redirect(url_for('.login'))
+            return redirect(url_for('index.login'))
         session['username'] = u.username
-        return redirect(url_for('.index'))
+        return redirect(url_for('index.index'))
     return render_template('login.html', form=form)
 
 
@@ -38,7 +39,7 @@ def register():
         if u is not None:
             session['username'] = u.username
             flash("注册成功", 'ok')
-            return redirect(url_for('.index'))
+            return redirect(url_for('index.index'))
     return render_template('register.html', form=form)
 
 
@@ -47,4 +48,4 @@ def logout():
     u = current_user()
     if u is not None:
         session.clear()
-    return redirect(url_for('.index'))
+    return redirect(url_for('index.index'))

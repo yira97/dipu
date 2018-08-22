@@ -16,7 +16,7 @@ class User(db.Document):
     username = db.StringField()
     nickname = db.StringField(default='')
     email = db.EmailField(default='void@void.com')
-    selfie = db.StringField(default='default.png')
+    selfie = db.StringField(default='default.jpeg')
     role = db.IntField(default=MEMBER)
     password = db.StringField(default='')
     block = db.BooleanField(default=False)
@@ -37,7 +37,7 @@ class User(db.Document):
 
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
-        self.index = Van.next_id(self.__class__.__name__)
+
         self.nickname = self.username
         self.password = self.salted_password(self.password)
 
@@ -48,6 +48,7 @@ class User(db.Document):
     def register(cls, username, email, password):
         u = User(username=username, email=email, password=password)
         if u.verify_username():
+            u.index = Van.next_id(u.__class__.__name__)
             u.save()
             return u
         return None
