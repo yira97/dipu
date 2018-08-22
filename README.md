@@ -20,6 +20,7 @@ $ vim config.py
 ```
 
 --config.py--
+```
 SECRET_KEY = 'xxxxx'
 
 MONGODB_SETTINGS = {
@@ -29,7 +30,7 @@ MONGODB_SETTINGS = {
 }
 
 SALT = 'xxx'
-
+```
 2.Start
 ```
 $ cd ..
