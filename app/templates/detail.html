@@ -3,18 +3,28 @@
 {% block content %}
 <div class="row" style="margin-top:5%">
 
-
-
-    <div class="card col-10 shadow-sm">
+    <div class="card  col-10 shadow-sm" style=" padding-bottom:0.5em">
         <div class="card-body ">
-            <img class="rounded  float-left " src={{url_for('static',filename="selfie/"+topic.selfie)}} height="50px" width="50px" style="margin-right:2em">
+            <img class="rounded  float-left " src={{url_for('static',filename="selfie/"+topic.selfie)}} height="50px"
+                 width="50px" style="margin-right:2em">
             <h1 class="card-title">{{topic.title}}</h1>
             <p class="card-text">{{topic.content}}</p>
-            <p class="card-text"><small class="text-muted"><span class="badge badge-secondary">{{topic.author}}</span> wrote at {{topic.ct}}</small></p>
+            <p class="card-text">
+                <small class="text-muted"><span class="badge badge-secondary">{{topic.username}}</span> wrote at
+                    {{topic.ct}}
+                </small>
+            </p>
         </div>
+        <div class="row">
+            <div class="col-11">{{form.content}}</div>
+            </div>
+            <div class="row " style="margin-top:0.5em ;">
+                <div class="col-3"><span class="btn btn-secondary  btn-sm">发送</span></div>
+            </div>
 
     </div>
 
+</div>
 
 </div>
 {% endblock %}

@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block title %}DEEEP - {{user.username}}{% endblock %}
+
+
 {% block content %}
 <div class="row " style="margin-top:5%">
     <div class="col-3 ">
         <div class="row justify-content-center" style="margin-bottom:2em">
-            <img src={{url_for('static',filename='selfie/'+user.selfie)}} class="rounded-circle" alt="" width="100px" height="100px">
+            <img src={{url_for('static',filename='selfie/'+user.selfie)}} class="rounded-circle" alt="" width="100px"
+                 height="100px">
         </div>
         <div class="list-group " id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
@@ -17,7 +20,19 @@
         </div>
     </div>
 
+    <!--
+        username = db.StringField(default='')
+        nickname = db.StringField(default='')
+        password = db.StringField(default='')
+        role = db.IntField(default=100)
+        email = db.StringField(default='')
+        selfie = db.StringField(default='default.jpeg')
+        intro = db.StringField(default='')
+        block = db.BooleanField(default=False)
+        ct = db.DateTimeField(default=datetime.now)
+        ut = db.DateTimeField(default=datetime.now)
 
+    -->
     <div class="col-6">
 
         <table class="table">
@@ -27,28 +42,30 @@
                 <th scope="row">用户名</th>
                 <td>{{user.username}}</td>
                 <td>
-                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+
                 </td>
             </tr>
             <tr>
                 <th scope="row">邮箱</th>
                 <td>{{user.email}}</td>
                 <td>
-                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+                    <a href="#"><img style="width: 14px; height: 14px;"
+                                     src={{url_for('static',filename='open-iconic/svg/wrench.svg')}}></a>
                 </td>
             </tr>
             <tr>
                 <th scope="row">昵称</th>
                 <td>{{user.nickname}}</td>
                 <td>
-                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+                    <a href="#"><img style="width: 14px; height: 14px;"
+                                     src={{url_for('static',filename='open-iconic/svg/wrench.svg')}}></a>
                 </td>
             </tr>
             <tr>
                 <th scope="row">创建时间</th>
-                <td>{{user.ct}}</td>
+                <td>{{user.ct.strftime('%Y-%m-%d')}}</td>
                 <td>
-                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+
                 </td>
             </tr>
 
@@ -64,7 +81,7 @@
 
     </div>
     <div class="col-3">
-        <div class="row " style="margin-top:8em">
+        <div class="row shadow-sm " style="margin-top:8em">
 
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -84,8 +101,26 @@
             </div>
 
         </div>
+        <div class="row shadow-sm" style="margin-top:1em">
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">修改简介</h5>
+
+                    <p class="card-text">随便介绍一下自己吧</p>
+
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    {{form.submit}}
+                </div>
+                </form>
+            </div>
+        </div>
 
     </div>
+</div>
 </div>
 {% endblock %}
 

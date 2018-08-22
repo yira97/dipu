@@ -69,7 +69,7 @@ class AddTopicForm(FlaskForm):
                             "aria - label": "Sizing example input",
                             "aria - describedby": "inputGroup-sizing-default"
                         }, )
-    content = TextAreaField(label=u'内容', validators=[DataRequired('请输入内容'), Length(min=4, max=2500)], description="内容",
+    content = TextAreaField(label=u'内容', validators=[DataRequired('请输入内容'), Length(min=4, max=5500)], description="内容",
                             render_kw={
                                 "class": "form-control",
                                 "placeholder": "content",
@@ -83,15 +83,21 @@ class AddTopicForm(FlaskForm):
 class AddSelfieForm(FlaskForm):
     image = FileField(label=u'文件', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg', 'gif'],
                                                                            message=u'jpg/png/jpeg/gif allowed!')])
-    submit = SubmitField(label=u"提交", render_kw={"class": "btn btn-secondary btn-block  btn-flat","style":"margin-top:1em"})
-
-
-
+    submit = SubmitField(label=u"提交",
+                         render_kw={"class": "btn btn-secondary btn-block  btn-flat", "style": "margin-top:1em"})
 
     # floor = db.IntField(default=0)  # 回复的楼层，0代表楼主
     # replyed_user = db.StringField(default='')  # 被回复的人
     # content = db.StringField(default='')  # 回复的内容
     # block = db.BooleanField(default=False)  # 状态
+
+
 class ReplyForm(FlaskForm):
-    floor = IntField(FileRequired())
-    content = StringField(FileRequired())
+    content = TextAreaField(label=u'内容', validators=[DataRequired('请输入回复'), Length(min=1, max=200)], description="回复",
+                            render_kw={
+                                "class": "form-control",
+                                "placeholder": "enter reply...",
+                                "required": 'required',
+                                "aria - label": "With textarea",
+                                "rows": "3"
+                            }, )

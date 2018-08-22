@@ -1,9 +1,11 @@
+from time import sleep
+
 from flask import render_template, Blueprint, flash, redirect, url_for, session
 
 from app.forms import LoginForm, RegistrationForm
 from app.models.topic import Topic
 from app.models.user import User
-from app.routes.bbs import current_user
+from app.routes.bbs import current_user, login_required
 
 main = Blueprint('index', __name__)
 
@@ -11,8 +13,7 @@ main = Blueprint('index', __name__)
 @main.route("/", methods=["GET"])
 def index():
     u = current_user()
-    ts = Topic.objects()
-
+    ts = Topic.objects(floor=0)
     return render_template('index.html', user=u, topics=ts)
 
 
@@ -24,13 +25,14 @@ def login():
         if u.verify_username():
             flash("账号不存在")
             return redirect(url_for('index.login'))
-        elif u.validation_login():
+        elif u.validation_password():
             flash("密码错误")
             return redirect(url_for('index.login'))
         session['username'] = u.username
         session.permanent = True
         return redirect(url_for('index.index'))
     return render_template('login.html', form=form)
+
 
 @main.route("/register", methods=["GET", "POST"])
 def register():
@@ -45,8 +47,7 @@ def register():
 
 
 @main.route("/logout", methods=["GET"])
+@login_required
 def logout():
-    u = current_user()
-    if u is not None:
-        session.pop('username',None)
-        return redirect(url_for('index.index'))
+    session.pop('username', None)
+    return redirect(url_for('index.index'))
