@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for
 from werkzeug.utils import redirect
 
-from app.forms import AddTopicForm
+from app.forms import AddTopicForm, ReplyForm
 from app.models.reply import Reply
 from app.models.topic import Topic
 from app.routes.bbs import login_required, current_user
@@ -9,15 +9,17 @@ from app.routes.bbs import login_required, current_user
 main = Blueprint('topic', __name__)
 
 
-@login_required
+
 @main.route("/add", methods=["GET", "POST"])
+@login_required
 def add():
     u = current_user()
     form = AddTopicForm()
     if form.validate_on_submit():
-        Topic.register(title=form.title.data, content=form.title.data, author=u.username)
+        Topic.register(title=form.title.data, content=form.content.data, author=u.username)
         return redirect(url_for('index.index'))
-    return render_template('add_topic.html', form=form)
+    return render_template('add_topic.html', form=form,user = u)
+
 
 
 @main.route("/detail/<int:index>", methods=["GET", "POST"])

@@ -10,15 +10,18 @@ from app.utils import log
 main = Blueprint('profile', __name__)
 
 
-@login_required
+
 @main.route("/", methods=["GET"])
+@login_required
 def index():
     form = AddSelfieForm()
     u = current_user()
     return render_template('profile.html', user=u, form=form)
 
-@login_required
+
+
 @main.route("/add_selfie", methods=["POST"])
+@login_required
 def add_selfie():
     u = current_user()
     form = AddSelfieForm()

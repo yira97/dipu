@@ -3,6 +3,7 @@ from functools import wraps
 from flask import session, redirect, url_for
 
 from app.models.user import User
+from app.utils import log
 
 
 def current_user():

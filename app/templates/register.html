@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 {% block title %}DEEEP - register{% endblock %}
+
+{% block style %}
+<style>
+
+    body{
+    background-image: url({{ url_for('static', filename='test.jpeg')}});
+    }
+
+
+</style>
+{% endblock %}
 {% block content %}
-<div class="row justify-content-center" style="margin-top:10%">
+<div class="row justify-content-center " style="margin-top:10%">
+    <div class="card shadow-lg col-3 ">
+        <div class="card-body ">
+            <h1 class="display-4" style="margin-bottom:0.6em">Sign Up</h1>
     <div class="panel-body">
         {% for msg in get_flashed_messages(category_filter=['err']) %}
         <p style="color: red">{{ msg }}</p>
@@ -44,6 +58,6 @@
                 我接受上述条款&nbsp;{{form.accept_tos}}
             </fieldset>
         </form>
-    </div>
+    </div></div></div>
 </div>
 {% endblock %}

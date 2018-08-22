@@ -28,9 +28,9 @@ def login():
             flash("密码错误")
             return redirect(url_for('index.login'))
         session['username'] = u.username
+        session.permanent = True
         return redirect(url_for('index.index'))
     return render_template('login.html', form=form)
-
 
 @main.route("/register", methods=["GET", "POST"])
 def register():
@@ -48,5 +48,5 @@ def register():
 def logout():
     u = current_user()
     if u is not None:
-        session.clear()
-    return redirect(url_for('index.index'))
+        session.pop('username',None)
+        return redirect(url_for('index.index'))
