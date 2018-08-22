@@ -44,11 +44,14 @@ class User(db.Document):
     def __repr__(self):
         return '<User:{}>'.format(self.username)
 
+    def _set_index(self):
+        self.index = Van.next_id(self.__class__.__name__)
+
     @classmethod
-    def register(cls, username, email, password):
-        u = User(username=username, email=email, password=password)
+    def register(cls,  *args, **kwargs):
+        u = cls(*args, **kwargs)
         if u.verify_username():
-            u.index = Van.next_id(u.__class__.__name__)
+            u._set_index()
             u.save()
             return u
         return None

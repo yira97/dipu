@@ -1,5 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextField, TextAreaField
+from flask_wtf.file import FileRequired, FileAllowed
+from mongoengine import IntField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextField, TextAreaField, FileField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email, ValidationError, Length, EqualTo
 
@@ -68,16 +70,28 @@ class AddTopicForm(FlaskForm):
                             "aria - describedby": "inputGroup-sizing-default"
                         }, )
     content = TextAreaField(label=u'内容', validators=[DataRequired('请输入内容'), Length(min=4, max=2500)], description="内容",
-                          render_kw={
-                              "class": "form-control",
-                              "placeholder": "content",
-                              "required": 'required',
-                              "aria - label": "With textarea",
-                              "rows" : "20"
-                          }, )
-    submit = SubmitField(
-        label=u"提交",
-        render_kw={
-            "class": "btn btn-secondary btn-block btn-flat",
-        }
-    )
+                            render_kw={
+                                "class": "form-control",
+                                "placeholder": "content",
+                                "required": 'required',
+                                "aria - label": "With textarea",
+                                "rows": "20"
+                            }, )
+    submit = SubmitField(label=u"提交", render_kw={"class": "btn btn-secondary btn-block btn-flat", })
+
+
+class AddSelfieForm(FlaskForm):
+    image = FileField(label=u'文件', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg', 'gif'],
+                                                                           message=u'jpg/png/jpeg/gif allowed!')])
+    submit = SubmitField(label=u"提交", render_kw={"class": "btn btn-secondary btn-block  btn-flat","style":"margin-top:1em"})
+
+
+
+
+    # floor = db.IntField(default=0)  # 回复的楼层，0代表楼主
+    # replyed_user = db.StringField(default='')  # 被回复的人
+    # content = db.StringField(default='')  # 回复的内容
+    # block = db.BooleanField(default=False)  # 状态
+class ReplyForm(FlaskForm):
+    floor = IntField(FileRequired())
+    content = StringField(FileRequired())

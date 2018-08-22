@@ -5,13 +5,12 @@
 
 
 
-    <div class="card col-10">
-        <div class="card-body">
-            <h1 class="card-title">{{topic.title}} <span class="badge badge-secondary">New</span></h1>
+    <div class="card col-10 shadow-sm">
+        <div class="card-body ">
+            <img class="rounded  float-left " src={{url_for('static',filename="selfie/"+topic.selfie)}} height="50px" width="50px" style="margin-right:2em">
+            <h1 class="card-title">{{topic.title}}</h1>
             <p class="card-text">{{topic.content}}</p>
-            <p class="card-text">
-                <small class="text-muted">{{topic.author}} wrote at {{topic.ct}}</small>
-            </p>
+            <p class="card-text"><small class="text-muted"><span class="badge badge-secondary">{{topic.author}}</span> wrote at {{topic.ct}}</small></p>
         </div>
 
     </div>

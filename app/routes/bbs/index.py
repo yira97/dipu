@@ -12,7 +12,8 @@ main = Blueprint('index', __name__)
 def index():
     u = current_user()
     ts = Topic.objects()
-    return render_template('index.html', user=u,topics=ts)
+
+    return render_template('index.html', user=u, topics=ts)
 
 
 @main.route("/login", methods=["GET", "POST"])

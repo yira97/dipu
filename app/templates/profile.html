@@ -3,7 +3,9 @@
 {% block content %}
 <div class="row " style="margin-top:5%">
     <div class="col-3 ">
-
+        <div class="row justify-content-center" style="margin-bottom:2em">
+            <img src={{url_for('static',filename='selfie/'+user.selfie)}} class="rounded-circle" alt="" width="100px" height="100px">
+        </div>
         <div class="list-group " id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
                href="#list-home" role="tab" aria-controls="home">主页</a>
@@ -19,35 +21,69 @@
     <div class="col-6">
 
         <table class="table">
-            <h1 class="display-3">Profile</h1>
+            <h1 class="display-3" style="margin-bottom:0.6em">Profile </h1>
             <tbody>
             <tr>
                 <th scope="row">用户名</th>
                 <td>{{user.username}}</td>
-                <td><button type="button" class="btn btn-secondary btn-sm">修改</button></td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+                </td>
             </tr>
             <tr>
                 <th scope="row">邮箱</th>
                 <td>{{user.email}}</td>
-                <td><button type="button" class="btn btn-secondary btn-sm">修改</button></td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+                </td>
             </tr>
             <tr>
                 <th scope="row">昵称</th>
                 <td>{{user.nickname}}</td>
-                <td><button type="button" class="btn btn-secondary btn-sm">修改</button></td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+                </td>
             </tr>
             <tr>
                 <th scope="row">创建时间</th>
                 <td>{{user.ct}}</td>
-               <td><button type="button" class="btn btn-secondary btn-sm">修改</button></td>
+                <td>
+                    <button type="button" class="btn btn-secondary btn-sm">修改</button>
+                </td>
             </tr>
+
 
             </tbody>
         </table>
 
+        <form>
 
 
+        </form>
 
+
+    </div>
+    <div class="col-3">
+        <div class="row " style="margin-top:8em">
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">修改头像</h5>
+
+                    <p class="card-text">你可以上传png/jpg/jpeg/gif格式的头像</p>
+
+
+                    <form method=POST enctype=multipart/form-data action="{{ url_for('profile.add_selfie') }}">
+                        {{ form.csrf_token }}
+                        <div class="form-group">
+                            {{form.image}}
+                            {{form.submit}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </div>
