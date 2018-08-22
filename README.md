@@ -31,5 +31,7 @@ MONGODB_SETTINGS = {
 SALT = 'xxx'
 
 2.Start
+```
 $ cd ..
 $ python3 run.py
+```
