@@ -24,7 +24,10 @@ def add():
 @login_required
 def detail(index):
     u = current_user()
-    a = ObjectId(index)
-    t = Topic.objects(id=a).first()
+    t = Topic.objects(id=ObjectId(index)).first()
+    ts = Topic.objects(belong=t.id)
     form = ReplyForm()
-    return render_template('detail.html', topic=t, user=u,form = form)
+    if form.validate_on_submit():
+        Topic.make_reply(t,content=form.content.data,username=u.username)
+        return redirect(url_for('topic.detail',index=index))
+    return render_template('detail.html', topic=t, user=u,form = form, r_topics = ts)

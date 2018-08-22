@@ -1,31 +1,75 @@
 {% extends "base.html" %}
 {% block title %}DEEEP - {{topic.title}}{% endblock %}
+
+
+{% block style %}
+<style>
+
+</style>
+
+{% endblock %}
+
+
 {% block content %}
 <div class="row" style="margin-top:5%">
-
-    <div class="card  col-10 shadow-sm" style=" padding-bottom:0.5em">
-        <div class="card-body ">
-            <img class="rounded  float-left " src={{url_for('static',filename="selfie/"+topic.selfie)}} height="50px"
-                 width="50px" style="margin-right:2em">
-            <h1 class="card-title">{{topic.title}}</h1>
-            <p class="card-text">{{topic.content}}</p>
-            <p class="card-text">
+    <div class="col-11">
+        <div class="card ">
+            <div class="card-header">
+                <img class="rounded  float-left " src={{url_for('static',filename="selfie/"+topic.selfie)}}
+                     height="50px"
+                     width="50px" style="margin-right:2em">
+                <h1>{{topic.title}}</h1>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{topic.content}}</p>
+                <a href="#" class="btn btn-dark float-right">赞</a>
                 <small class="text-muted"><span class="badge badge-secondary">{{topic.username}}</span> wrote at
                     {{topic.ct}}
                 </small>
-            </p>
-        </div>
-        <div class="row">
-            <div class="col-11">{{form.content}}</div>
-            </div>
-            <div class="row " style="margin-top:0.5em ;">
-                <div class="col-3"><span class="btn btn-secondary  btn-sm">发送</span></div>
             </div>
 
+        </div>
     </div>
 
-</div>
+
+    {% for r_topic in r_topics %}
+    <div class="col-11" >
+        <div class="card " >
+            <div class="card-body" style="padding-bottom:0px;padding-top:0.7em;padding-left:0em">
+                <div class="col-2 float-left" >
+                    <img class="rounded " src={{url_for('static',filename="selfie/"+r_topic.selfie)}}
+                         height="45px"
+                         width="45px" style="margin-right:1em" >
+                    <p class=" text-secondary justify-content-center" style="margin-bottom:0px">{{r_topic.username}}</p>
+
+                </div>
+
+                <div class="col-9 float-left">
+                    <p class="card-text">{{r_topic.content}}</p>
+                    <span class="d-block text-secondary">{{r_topic.ut}}</span>
+                </div>
+
+
+                <span class="badge badge-secondary badge-pill float-right">{{loop.index}}</span>
+
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
 
 </div>
+
+
+<form method="POST" id="form-data">{{ form.csrf_token }}
+    <div class="row">
+        <div class="col-11">{{form.content}}</div>
+    </div>
+    <div class="row " style="margin-top:0.5em ;">
+        <div class="col-3">{{form.submit}}</div>
+    </div>
+</form>
+
 {% endblock %}
 

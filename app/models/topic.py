@@ -9,11 +9,13 @@ class Topic(db.Document):
     username = db.StringField(default='')
     content = db.StringField(default='')
     title = db.StringField()  # 标题（楼主专属）
+    belong = db.ObjectIdField()  # 所属文章（非楼主专属）
     is_host = db.BooleanField(default=True)
     floor = db.IntField(default=0)
     block = db.BooleanField(default=False)
     ct = db.DateTimeField(default=datetime.now)
     ut = db.DateTimeField(default=datetime.now)
+    board = db.StringField(default='')
 
     def __init__(self, *args, **kwargs):
         super(Topic, self).__init__(*args, **kwargs)
@@ -32,7 +34,7 @@ class Topic(db.Document):
         return t
 
     @classmethod
-    def make_reply(cls, receiver_id, *args, **kwargs):
+    def make_reply(cls, receiver_topic, *args, **kwargs):
         """
         # 如果被回者是楼主：回复者楼层=层主数
         # 如果被回者是层主：回复者的楼层 = 被回者楼层，回复者host改为false
@@ -41,8 +43,8 @@ class Topic(db.Document):
         :param kwargs:
         :return:
         """
-        receiver_topic = Topic.objects(id=receiver_id).first()
         submitter_topic = cls(*args, **kwargs)
+        submitter_topic.belong = receiver_topic.id
 
         if receiver_topic.is_host:
             submitter_topic.floor = len(Topic.objects(is_host=True))

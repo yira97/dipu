@@ -93,7 +93,7 @@ class AddSelfieForm(FlaskForm):
 
 
 class ReplyForm(FlaskForm):
-    content = TextAreaField(label=u'内容', validators=[DataRequired('请输入回复'), Length(min=1, max=200)], description="回复",
+    content = TextAreaField(label=u'内容', validators=[DataRequired('请输入回复'), Length(min=1, max=4000)], description="回复",
                             render_kw={
                                 "class": "form-control",
                                 "placeholder": "enter reply...",
@@ -101,3 +101,4 @@ class ReplyForm(FlaskForm):
                                 "aria - label": "With textarea",
                                 "rows": "3"
                             }, )
+    submit = SubmitField(label=u"提交", render_kw={"class": "btn btn-secondary btn-block btn-flat", })
