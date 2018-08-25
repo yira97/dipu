@@ -1,22 +1,19 @@
-{% extends "base.html" %}
-{% block title %}DEEEP - index{% endblock %}
-
-
-
-
-{% block content %}
-
-
+{% extends "base.html" %} {% block title %}DEEEP - index{% endblock %}
+{% block style %}
+<style media="screen">
+body{
+    background-image: url({{ url_for('static', filename='index2.png')}} );
+ }
+</style>
+ {% endblock %} {% block content %}
 <div class="row " style="margin-top:2%">
     <div class="col-9">
         <ul class="list-group shadow-sm">
             {% for t in topics %}
             <li class="list-group-item " style="padding:0.5em">
-                <img class="rounded  float-left " src={{url_for('static',filename="selfie/"+t.selfie)}} height="50px"
-                     width="50px" style="margin-right:0.8em">
+                <img class="rounded  float-left " src={{url_for( 'static',filename="selfie/" +t.selfie)}} height="50px" width="50px" style="margin-right:0.8em">
                 <ul class="list-group ">
-                    <span class="d-block"><a class="text-secondary"
-                                             href={{url_for('topic.detail',index=t.get_index())}}>{{t.title}}</a></span>
+                    <span class="d-block"><a class="text-secondary" href={{url_for('topic.detail',index=t.get_index())}}>{{t.title}}</a></span>
                     <span class="d-block text-secondary">{{t.ut.strftime('%m-%d')}}&nbsp;·&nbsp;{{t.username}}</span>
                 </ul>
             </li>
@@ -28,10 +25,8 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">这里是嘀噗 ，</h5>
-                    <p class="card-text">My name is Van. I'm an artist. I'm a performance artist. I'm hired for people
-                        to
-                        fulfill their fantasies, their DEEP♂DARK♂FANTASIES.</p>
-                    <a href={{url_for('topic.add')}} class="btn btn-dark">发布新帖</a>
+                    <p class="card-text">My name is Van. I'm an artist. I'm a performance artist. I'm hired for people to fulfill their fantasies, their DEEP♂DARK♂FANTASIES.</p>
+                    <a href={{url_for( 'topic.add')}} class="btn btn-dark">发布新帖</a>
                 </div>
             </div>
         </div>
@@ -39,4 +34,3 @@
     </div>
 </div>
 {% endblock %}
-

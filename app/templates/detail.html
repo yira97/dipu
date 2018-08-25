@@ -1,23 +1,16 @@
 {% extends "base.html" %}
-{% block title %}DEEEP - {{topic.title}}{% endblock %}
-
-
 {% block style %}
-<style>
-
+<style media="screen">
+body{
+     background-image: url({{ url_for('static', filename='index2.png')}});
+ }
 </style>
-
-{% endblock %}
-
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="row" style="margin-top:5%">
     <div class="col-11">
         <div class="card ">
             <div class="card-header">
-                <img class="rounded  float-left " src={{url_for('static',filename="selfie/"+topic.selfie)}}
-                     height="50px"
-                     width="50px" style="margin-right:2em">
+                <img class="rounded  float-left " src={{url_for( 'static',filename="selfie/" +topic.selfie)}} height="50px" width="50px" style="margin-right:2em">
                 <h1>{{topic.title}}</h1>
             </div>
             <div class="card-body">
@@ -27,49 +20,38 @@
                     {{topic.ct}}
                 </small>
             </div>
-
         </div>
     </div>
-
-
     {% for r_topic in r_topics %}
-    <div class="col-11" >
-        <div class="card " >
-            <div class="card-body" style="padding-bottom:0px;padding-top:0.7em;padding-left:0em">
-                <div class="col-2 float-left" >
-                    <img class="rounded " src={{url_for('static',filename="selfie/"+r_topic.selfie)}}
-                         height="45px"
-                         width="45px" style="margin-right:1em" >
+    <div class="col-11">
+        <div class="card " style="border-left:0px;border-right:0px;border-top:0px;border-radius:0px">
+            <div class="card-body" style="padding-bottom:0px;padding-top:0.7em;padding-left:0em;">
+                <div class="col-2 float-left">
+                    <img class="rounded " src={{url_for( 'static',filename="selfie/" +r_topic.selfie)}} height="45px" width="45px" style="margin-right:1em">
                     <p class=" text-secondary justify-content-center" style="margin-bottom:0px">{{r_topic.username}}</p>
-
                 </div>
-
                 <div class="col-9 float-left">
                     <p class="card-text">{{r_topic.content}}</p>
                     <span class="d-block text-secondary">{{r_topic.ut}}</span>
                 </div>
-
-
                 <span class="badge badge-secondary badge-pill float-right">{{loop.index}}</span>
-
-
             </div>
         </div>
     </div>
     {% endfor %}
-
-
+    <div class="col-11">
+        <div class="card " style="border-left:0px;border-right:0px;border-top:0px;border-radius:0px">
+            <div class="card-body" style="padding-bottom:0px;padding-top:0.7em;padding-left:0em;">
+                <form method="POST" id="form-data">{{ form.csrf_token }}
+                    <div class="row">
+                        <div class="col-11">{{form.content}}</div>
+                    </div>
+                    <div class="row " style="margin-top:0.5em ;">
+                        <div class="col-3">{{form.submit}}</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-<form method="POST" id="form-data">{{ form.csrf_token }}
-    <div class="row">
-        <div class="col-11">{{form.content}}</div>
-    </div>
-    <div class="row " style="margin-top:0.5em ;">
-        <div class="col-3">{{form.submit}}</div>
-    </div>
-</form>
-
 {% endblock %}
-

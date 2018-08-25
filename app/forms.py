@@ -99,6 +99,7 @@ class ReplyForm(FlaskForm):
                                 "placeholder": "enter reply...",
                                 "required": 'required',
                                 "aria - label": "With textarea",
-                                "rows": "3"
+                                "rows": "3",
+                                #"style":"resize:none;",
                             }, )
     submit = SubmitField(label=u"提交", render_kw={"class": "btn btn-secondary btn-block btn-flat", })
