@@ -1,5 +1,5 @@
 # miles_bbs
-
+一个使用flask框架的论坛的简单实现
 ## Module Version
 flask 1.0.2
 python 3.6.6
