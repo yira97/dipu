@@ -1,38 +1,37 @@
 # miles_bbs
-
-##Module Version
+一个使用flask框架的论坛的简单实现
+## Module Version
 flask 1.0.2
 python 3.6.6
+mongodb
 
-##Installation Step
-0.prepare virtual environment
+## Installation Step
+### 0.prepare virtual environment
 ```
-$ mkdir my_work_dir
-$ cd my_work_dir
 $ python3 -m venv venv
 $ source /venv/bin/activate
+(venv)$ pip install -r requirements.txt
 ```
-1.create config
+### 1.create config
 ```
 $ cd app
 $ touch config.py
 $ vim config.py
 ```
 
---config.py--
+#### file:config.py
 ```
-SECRET_KEY = 'xxxxx'
+SECRET_KEY = 'xxxxx'  #ramdom string 
 
-MONGODB_SETTINGS = {
-    'db': 'bbs',
+MONGODB_SETTINGS = {    # review your mongodb config
+    'db': 'bbs', 
     'host': 'localhost',
     'port': 27017
 }
 
-SALT = 'xxx'
+SALT = 'xxx'    #ramdom string 
 ```
-2.Start
+### 2.Start
 ```
-$ cd ..
 $ python3 run.py
 ```
