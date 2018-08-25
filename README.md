@@ -1,12 +1,11 @@
 # miles_bbs
 一个使用flask框架的论坛的简单实现。
 包含注册、登录、发帖、回复、上传头像等功能。
-![image]( https://github.com/miles_bbs/app/static/screen_shot/ss1.png)
-![image]( https://github.com/miles_bbs/app/static/screen_shot/ss2.png)
-![image]( https://github.com/miles_bbs/app/static/screen_shot/ss3.png)
-![image]( https://github.com/miles_bbs/app/static/screen_shot/ss4.png)
-![image]( https://github.com/miles_bbs/app/static/screen_shot/ss5.png)
-
+![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss1.png)
+![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss2.png)
+![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss3.png)
+![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss4.png)
+![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss5.png)
 ## Module Version
 flask 1.0.2
 python 3.6.6
