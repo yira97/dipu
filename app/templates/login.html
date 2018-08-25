@@ -1,17 +1,15 @@
 {% extends "base.html" %}
-{% block title %}DEEEP - login{% endblock %}
 {% block style %}
 <style media="screen">
 body{
     background-position: top;
-    background-size: cover;
+    background-size: 15%;
     background-attachment: fixed;
-    background-image: url({{ url_for('static', filename='test.jpeg')}});
+    background-image: url({{ url_for('static', filename='index2.png')}});
 }
 </style>
-
 {% endblock %} {% block content %}
-<div class="row justify-content-center " style="margin-top:10%">
+<div class="row justify-content-right " style="margin-top:10%">
     <div class="card ">
         <div class="card-body shadow-lg">
             <h1 class="display-4" style="margin-bottom:0.6em">Sign In</h1>
@@ -19,9 +17,7 @@ body{
                 {% for msg in get_flashed_messages() %}
                 <p class="login-box-msg" style="color: red;">{{ msg }}</p>
                 {% endfor %}
-
-                <form method="POST" id="form-data">
-                    {{ form.csrf_token }}
+                <form method="POST" id="form-data">{{ form.csrf_token }}
                     <div class="form-group has-feedback">
                         <label for="input_name"><span class="glyphicon glyphicon-user"></span>&nbsp;用户名</label> {{ form.username }}
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span> {% for err in form.username.errors %}
@@ -36,7 +32,6 @@ body{
                         </div>
                         {% endfor %}
                     </div>
-
                     <div class="row">
                         <div class="col-12">{{ form.submit }}</div>
                     </div>

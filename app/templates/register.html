@@ -3,13 +3,14 @@
 <style>
 body{
     background-position: top;
-    background-size: cover;
+    background-size: 10%;
     background-attachment: fixed;
-    background-image: url({{ url_for('static', filename='test.jpeg')}});
+    background-image: url({{ url_for('static', filename='index2.png')}});
+
 }
 </style>
 {% endblock %} {% block content %}
-<div class="row justify-content-center " style="margin-top:10%">
+<div class="row justify-content-right " style="margin-top:10%">
     <div class="card shadow-lg col-3 ">
         <div class="card-body ">
             <h1 class="display-4" style="margin-bottom:0.6em">Sign Up</h1>
