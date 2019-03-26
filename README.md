@@ -15,7 +15,7 @@ mongodb
 ### 0.prepare virtual environment
 ```
 $ python3 -m venv venv
-$ source /venv/bin/activate
+$ source venv/bin/activate
 (venv)$ pip install -r requirements.txt
 ```
 ### 1.create config
