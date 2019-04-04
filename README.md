@@ -1,43 +1,41 @@
-# miles_bbs
-一个使用flask框架的论坛的简单实现。
-包含注册、登录、发帖、回复、上传头像等功能。
+# dipu bbs
+V2EX-like static forum system, integrating register, sign in, post, reply, profile editing, selfie uploading function
 ![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss1.png)
 ![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss2.png)
 ![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss3.png)
 ![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss4.png)
 ![image](https://raw.githubusercontent.com/milespercival/miles_bbs/master/app/static/screen_shot/ss5.png)
-## Module Version
+## Last Test Version
 flask 1.0.2
 python 3.6.6
-mongodb
 
-## Installation Step
-### 0.prepare virtual environment
+## Install
+### 1.prepare runtime environment
 ```
+$ git clone https://github.com/ethanmiles/dipu_bbs && cd dipu_bbs
 $ python3 -m venv venv
 $ source venv/bin/activate
-(venv)$ pip install -r requirements.txt
+$ python3 -m pip install -r requirements.txt
 ```
-### 1.create config
+### 2.initial config
 ```
 $ cd app
 $ touch config.py
 $ vim config.py
 ```
-
-#### file:config.py
+e.g.
 ```
-SECRET_KEY = 'xxxxx'  #ramdom string 
+SECRET_KEY = 'huaq'
 
-MONGODB_SETTINGS = {    # review your mongodb config
-    'db': 'bbs', 
-    'host': 'localhost',
-    'port': 27017
+MONGODB_SETTINGS = {
+    'db': 'your.db.name', 
+    'host': 'your.ip',
+    'port': 27017,
 }
 
-SALT = 'xxx'    #ramdom string 
+SALT = キズナアイ'
 ```
-### 2.Start
+### 3.Start
 ```
 $ python3 run.py
 ```
